@@ -1,0 +1,339 @@
+<head>
+<title>Woah</title>
+<link rel="apple-touch-icon-precomposed" href="touch-icon-iphone.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icon-iphone4.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="initial-scale=1.0, width=device-width">
+<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script><script src="jquery-1.5.1.min.js"></script>
+<script src="box2dallcompressed.js"></script>
+<style type="text/css">
+#console {position:fixed;top:0;left:0;color:#fff;padding:5px;font-family:Roboto;font-size:19px;z-index:9999;}
+#loading {width:640px;height:920px;position:fixed;background:#000;z-index:10000;left:0;top:0;}
+#loading img {margin:411px 0 0 37px;}
+#addtohomescreen {width:640px;height:920px;position:fixed;background:rgba(0,0,0,.75);z-index:9999;left:0;top:0;}
+#addto1 {position:absolute;top:234px;left:174px;}
+#addto2 {position:absolute;top:31px;left:336px;}
+#rotatemessage {width:640px;height:920px;position:fixed;background:#000;z-index:10000;left:0;top:0;display:none;}
+#rotatemessage img {margin:205px 0 0 226px;}
+html, body {margin:0;padding:0;}
+body {background: url(imagesmobile/bgr.jpg) no-repeat;color:#fff;font-family:Roboto;-webkit-user-select: none;-webkit-tap-highlight-color: transparent;-webkit-touch-callout: none;-webkit-overflow-scrolling: touch;}
+#pages {height:920px;width:640px;overflow:hidden;position:relative;}
+#pagesinner {height:920px;width:2560px;}
+.page {width:640px;height:920px;float:left;position:relative;}
+.button {width:114px;position:absolute;text-align:center;font-size:22px;font-weight:bold;white-space:nowrap;}
+.button img {border-radius: 18px;width: 114px;height: 114px;position:absolute;left:0;top:0;}
+.button p {margin-top:7px;position:relative;left:-56px;top:114px;width:200%;}
+.button1 {left:34px;top:27px;}
+.button2 {left:186px;top:27px;}
+.button3 {left:340px;top:27px;}
+.button4 {left:492px;top:27px;}
+.button5 {left:34px;top:203px;}
+.button6 {left:186px;top:203px;}
+.button7 {left:340px;top:203px;}
+.button8 {left:492px;top:203px;}
+.button9 {left:34px;top:379px;}
+.button10 {left:186px;top:379px;}
+.button11 {left:340px;top:379px;}
+.button12 {left:492px;top:379px;}
+.button13 {left:34px;top:555px;}
+.button14 {left:186px;top:555px;}
+.button15 {left:340px;top:555px;}
+.button16 {left:492px;top:555px;}
+#dock {position:absolute;left:0;top:728px;width:640px;height:192px;overflow:hidden;}
+#dockimg {position:absolute;bottom:0;left:0;width:640px;height:172px;background-image:url('/imagesmobile/dockempty.png');}
+#dock .button {top:35px;}
+#dock .buttonbadged {top:20px;}
+.dockhilite {position:absolute;top:35px;opacity:0;}
+.dockhilitebadged {top:20px;}
+#dockhilite1, .dockbutton1, .buttonshadow1 {left:34px;}
+#dockhilite2, .dockbutton2, .buttonshadow2 {left:186px;}
+#dockhilite3, .dockbutton3, .buttonshadow3 {left:340px;}
+#dockhilite4, .dockbutton4, .buttonshadow4 {left:492px;}
+#dock p {z-index:10;text-shadow:rgba(0,0,0,.5) 0 3px 2px;}
+#dock .buttonbadged p {top:129px;}
+#dock .flipped {position:absolute;top:116px;left:0;opacity:.2;/*-webkit-transform: scaleY(-1);*/}
+#dock .buttonbadged .flipped {top:131px;}
+#dock .buttonshadow {width:114px;height:114px;position:absolute;background:#000;top:38px;border-radius:21px;}
+#pagemarkers {width:640px;height:15px;position:absolute;top:724px;left:0;text-align:center;}
+#searchicon {background:url('/imagesmobile/searchicon.png');width:15px;height:15px;position:absolute;left:276px;}
+.pagemarker {background:url('/imagesmobile/pagemarker.png');width:12px;height:12px;position:absolute;}
+#pagemarker1 {left:312px;}
+#pagemarker2 {left:342px;background-position:0 12px;}
+</style>
+<script src="prototype-1.6.0.2.js"></script><script src="box2dallcompressed.js"></script></head>
+<body>
+
+
+<div id="rotatemessage" style="display: block;"><img draggable="false" src="imagesmobile/rotatephone.gif"></div>
+<div id="pages"><div id="pagesinner">
+	<div class="page"><img draggable="false" src="imagesmobile/search.jpg"></div>
+	<div class="page" id="page1">
+		<div class="button button1"><img draggable="false" src="imagesmobile/appstore.jpg"><p>App Store</p></div>
+		<div class="button button2"><img draggable="false" src="imagesmobile/clock.jpg"><p>Clock</p></div>
+		<div class="button button3"><img draggable="false" src="imagesmobile/camera.jpg"><p>Camera</p></div>
+		<div class="button button4"><img draggable="false" src="imagesmobile/photos.jpg"><p>Photos</p></div>
+		<div class="button button5"><img draggable="false" src="imagesmobile/tips.jpg"><p>Tips</p></div>
+		<div class="button button6"><img draggable="false" src="imagesmobile/maps.jpg"><p>Maps</p></div>
+              <div class="button button7"><img draggable="false" src="imagesmobile/contacts.jpg"><p>Contacts</p></div>
+		<div class="button button8"><img draggable="false" src="imagesmobile/twitter.jpg"><p>Twitter</p></div>
+		<div class="button button9"><img draggable="false" src="imagesmobile/notes.jpg"><p>Notes</p></div>
+	</div>
+	<div class="page">
+		<div class="button button1"><img draggable="false" src="imagesmobile/instagram.jpg"><p>Instagram</p></div>
+		<div class="button button2"><img draggable="false" src="imagesmobile/youtube.jpg"><p>YouTube</p></div>
+	</div>
+</div></div>
+<div id="dock">
+	<div id="dockimg"></div>
+	<div class="buttonshadow buttonshadow1"></div>
+	<div class="buttonshadow buttonshadow2"></div>
+	<div class="buttonshadow buttonshadow3"></div>
+	<div class="buttonshadow buttonshadow4"></div>
+	<div class="button dockbutton1"><img draggable="false" src="imagesmobile/mail.jpg"><p></p></div>
+	<div class="button dockbutton2"><img draggable="false" src="imagesmobile/messages.jpg"><p></p></div>
+	<div class="button dockbutton3"><img draggable="false" src="imagesmobile/phone.jpg"><p></p></div>
+	<div class="button dockbutton4"><img draggable="false" src="imagesmobile/settings.jpg"><p></p></div>
+</div>
+<div id="console"></div>
+
+<script type="text/javascript">
+/* Copyright 2008 Eric Seidel <eric@webkit.org> */
+/* Portions derived from box2d demos copyright 2006-2007 Erin Catto */
+/* LICENSE: Um, do whatever you want with it.  Don't break Erin's license.  Don't sue me.  Don't hurt nobody, yahear? */
+function step(a){var b=new Date;
+var c=false;
+var d=lastStep?(b-lastStep)/1e3:1/60;
+var e=1;
+world.Step(d,e);
+updateElementPositions(world);
+var f=false;
+for(var g=world.m_bodyList;
+g;
+g=g.m_next){if(!(g.IsSleeping()||g.IsFrozen()||g.IsStatic())){f=true;
+break}}lastStep=new Date;
+if(f)setTimeout("step("+(a||0)+")",10)}function drawShape(a,b){b.strokeStyle="#ffffff";
+b.beginPath();
+b.strokeWidth="5px";
+switch(a.m_type){case b2Shape.e_polyShape:{var c=a;
+var d=b2Math.AddVV(c.m_position,b2Math.b2MulMV(c.m_R,c.m_vertices[0]));
+b.moveTo(d.x,d.y);
+for(var e=0;
+e<c.m_vertexCount;
+e++){var f=b2Math.AddVV(c.m_position,b2Math.b2MulMV(c.m_R,c.m_vertices[e]));
+b.lineTo(f.x,f.y)}b.lineTo(d.x,d.y)}break}b.stroke()}function updateElementPositions(a){for(var b=a.m_bodyList;
+b;
+b=b.m_next){if(b.m_userData){var c=b.m_userData;
+positionElementToMatchBody(c,b)}}}function updateMiniMap(a,b){b.save();
+b.scale(worldToCanvasXScale,worldToCanvasYScale);
+b.restore()}function positionElementToMatchBody(a,b){var c=b.m_position;
+var d=b.m_rotation;
+var e=a.originalCenter;
+var f=c.x-e.x;
+var g=c.y-e.y;
+var h="translate("+f+"px, "+g+"px) rotate("+d+"rad)";
+a.style.webkitTransform=h}function initWorld(a){var b=elementsToAnimate();
+for(var c=0;
+c<b.length;
+c++){createBodyForElement(a,b[c])}}function elementsToAnimate(){var a=[];
+for(var b=0;
+b<tagsToTry.length&&a.length<500;
+b++){var c;
+if(c=elementsWithTag(tagsToTry[b])){for(var d=0;
+d<c.length;
+d++){a.push(c[d])}}}fisherYatesShuffle(a);
+a=a.slice(0,1e4);
+return a}function fisherYatesShuffle(a){var b=a.length;
+if(!b)return false;
+while(--b){var c=Math.floor(Math.random()*(b+1));
+var d=a[b];
+var e=a[c];
+a[b]=e;
+a[c]=d}}function elementsWithTag(a){var b=document.getElementsByTagName(a);
+return b}function createBodyForElement(a,b){var c=new b2BodyDef;
+addShapesForElement(c,b);
+b.style.zIndex="10000";
+c.userData=b;
+return a.CreateBody(c)}function addShapesForElement(a,b){var c=new b2BoxDef;
+c.density=1+Math.random()*5;
+var d=b.offsetWidth/2;
+var e=b.offsetHeight/2;
+c.extents.Set(d,e);
+a.AddShape(c);
+var f=Element.cumulativeOffset(b);
+var g={x:f.left+d,y:f.top+e};
+a.position.Set(g.x,g.y);
+b.originalCenter=g}function createBox(a,b,c,d,e,f){if(typeof f=="undefined")f=true;
+var g=new b2BoxDef;
+if(!f)g.density=1;
+g.extents.Set(d,e);
+var h=new b2BodyDef;
+h.AddShape(g);
+h.position.Set(b,c);
+return a.CreateBody(h)}function createGround(a,b,c){var d=500;
+var e=5;
+var f=new b2BoxDef;
+f.extents.Set(b,d);
+f.restitution=.2;
+var g=new b2BodyDef;
+g.AddShape(f);
+g.position.Set(0,c+d-e);
+return a.CreateBody(g)}function createWorld(a,b){var c=new b2AABB;
+var d=2*Math.max(a,b);
+c.minVertex.Set(-d,-d);
+c.maxVertex.Set(d,d);
+var e=new b2Vec2(0,550);
+var f=true;
+var g=new b2World(c,e,f);
+createGround(g,a,b);
+var h=b/2;
+var i=a/2;
+var j=10;
+var k=5;
+createBox(g,-j,h,j/2,h);
+createBox(g,a,h,j/2,h);
+return g}function loadNextSyncScript(){if(nextSyncScriptToLoad<syncScriptsToLoad.length){loadScript(syncScriptsToLoad[nextSyncScriptToLoad++],loadNextSyncScript)}}function loadScripts(){nextSyncScriptToLoad=0;
+loadNextSyncScript()}function loadScript(a,b){var c=document.getElementsByTagName("head")[0];
+var d=document.createElement("script");
+d.setAttribute("src",a);
+d.addEventListener("load",b,false);
+c.appendChild(d)}var nextSyncScriptToLoad=0;
+var syncScriptsToLoad=["prototype-1.6.0.2.js","box2dallcompressed.js"];
+var tagsToTry=["img","p"];
+var lastStep=null;
+var world;
+var worldToCanvasXScale=1;
+var worldToCanvasYScale=1;
+var applyGravity=function(){var a=document.viewport.getHeight();
+var b=document.viewport.getWidth();
+world=createWorld(b,a);
+initWorld(world);
+step()};
+if(typeof executeAfterOnLoad=="undefined")executeAfterOnLoad=false;
+if(executeAfterOnLoad){window.onload=loadScripts}else{loadScripts()}jQuery(document).ready(function(){jQuery.noConflict();
+var a=jQuery;
+var b=navigator.userAgent,c=a("body"),d=a("#pages"),e=a(".page"),f=a("#page1"),g=a("#pagemarker1"),h=a("#pagemarker2"),i=a(".button"),j=a(".dockhilite"),k=a(".flipped"),l=a(".button").find("img"),m=d.find(".button").find("img"),n=[],o=function(b){a("#console").css({background:"#000"});
+a("#console").append(b+"<br>")},p=function(a,b){return Math.abs(a-b)},q=1,r=0,s,t=0,u=0,v=0,w,x=0,y=0,z=0;
+var iphoneVersion = (window.screen.height == (1136 / 1)) ? 5 : 4;
+e.each(function(){n.push(a(this).offset().left);
+r+=a(this).width()});
+n.shift();
+var A=function(){var b;
+if(d.scrollLeft()<960){b=-640}else{b=-1280}d.scrollLeft(0);
+d.css({overflow:"visible",left:b});
+a("#dock").css({overflow:"visible"});
+a(".buttonshadow").remove();
+j.remove();
+a("p").animate({width:114,left:0},{duration:500});
+k.animate({opacity:0},{duration:200,complete:function(){a(this).remove()}});
+applyGravity();
+A="";
+B="";
+C="";
+l.unbind("touchstart");
+l.unbind("touchend");
+j.unbind("touchstart");
+j.unbind("touchmove");
+j.unbind("touchend");
+d.unbind("touchstart");
+d.unbind("touchmove");
+d.unbind("touchend");
+a(window).unbind("scrollstop");
+a(window).unbind("touchstart");
+a(window).unbind("touchmove");
+a(window).unbind("touchend");
+a(window).bind("touchstart",function(a){a.preventDefault()});
+a(window).bind("touchmove",function(a){a.preventDefault()})};
+var B=function(){var b=d.scrollLeft(),c=null;
+a.each(n,function(){if(c==null||Math.abs(this-b)<Math.abs(c-b)){c=this}});
+if(p(b,c)>=2){d.animate({scrollLeft:c},{duration:200,queue:false,complete:function(){if(c==640){g.css({"background-position":"0 0"});
+h.css({"background-position":"0 12px"})}else{g.css({"background-position":"0 12px"});
+h.css({"background-position":"0 0"})}}})}};
+var C=function(a){var b=a;
+var c=setInterval(function(){if(v==1){clearInterval(c)}d.scrollLeft(d.scrollLeft()+b);
+b=b/1.3;
+if(b<4&&b>-4){clearInterval(c);
+B()}},4)};
+l.bind("touchstart",function(){a(this).css({opacity:.6});
+w=a(this)});
+l.bind("touchend",function(){a(this).css({opacity:1});
+if(t===0){A()}});
+j.bind("touchstart",function(){a(this).css({opacity:1});
+u=0});
+j.bind("touchmove",function(){u=1});
+j.bind("touchend",function(){a(this).css({opacity:0});
+if(u===0){A()}});
+d.bind("touchstart",function(a){d.stop(true,true);
+s=a;
+pagesCurScrollLeft=d.scrollLeft();
+v=1;
+t=0});
+d.bind("touchmove",function(a){x=a.pageX-s.pageX;
+y=z-a.pageX;
+if(t!==1&&y!==0){t=1}z=a.pageX;
+d.scrollLeft(pagesCurScrollLeft-x);
+w.css({opacity:1})});
+d.bind("touchend",function(a){v=0;
+if(y>5||y<-5){y=y>64?64:y<-64?-64:y;
+C(y)}else{B()}y=0});
+a(window).bind("load",function(){d.animate({scrollLeft:640},{duration:1,queue:false});
+a("#loading").remove()});
+if((a(window).height()<920&&iphoneVersion === 4)||(a(window).height()<1096&&iphoneVersion === 5)){if(orientation==0||orientation==180){
+a("#addto1").css({display:"block"});
+a("#addto2").css({display:"none"});
+a("#rotatemessage").css({display:"none"});
+}else{
+a("#addto1").css({display:"none"});
+a("#addto2").css({display:"block"});
+a("#rotatemessage").css({display:"block"});
+if (iphoneVersion === 5) {
+	a('#rotatemessage').find('img').css({'margin-left': 293});
+}
+}a(window).bind("orientationchange",function(b){if(orientation==0||orientation==180){
+a("#addto1").css({display:"block"});
+a("#addto2").css({display:"none"});
+a("#rotatemessage").css({display:"none"});
+}else{
+a("#addto1").css({display:"none"});
+a("#addto2").css({display:"block"});
+a("#rotatemessage").css({display:"block"});
+if (iphoneVersion === 5) {
+	a('#rotatemessage').find('img').css({'margin-left': 293});
+}
+}});
+a("#loading").remove();
+//a("#rotatemessage").remove();
+}else{
+if(orientation==0||orientation==180){a("#rotatemessage").css({display:"none"})}else{a("#rotatemessage").css({display:"block"})}a(window).bind("orientationchange",function(b){if(orientation==0||orientation==180){a("#rotatemessage").css({display:"none"})}else{a("#rotatemessage").css({display:"block"})}});
+a("#addtohomescreen").remove()}a(window).bind("touchstart",function(a){a.preventDefault()});
+a(window).bind("touchmove",function(a){a.preventDefault();
+if(d.scrollLeft()<640){var b=((110-(640-d.scrollLeft())/6)/100).toFixed(2);
+b=b>1?1:b<.35?.35:b;
+f.css({opacity:b})}});
+a(window).bind("touchend",function(a){a.preventDefault();
+f.animate({opacity:1},{queue:false})});
+var D=function(a,b,c,d,e,f,g){var h=0,i=0,j=a.animIncrement>=0?a.animIncrement+1:0;
+a.animIncrement=j;
+var k=setInterval(function(){if(a.animIncrement!==j){clearInterval(k);
+clearTimeout(l);
+a.css({"background-position":f[0]+" "+f[1]});
+if(g===1){a.remove()}}a.css({"background-position":b[h][0]+" "+b[h][1]});
+if(e>0){if(i<e){h=h<b.length-1?h+1:0;
+i=i+1}else{clearInterval(k);
+a.css({"background-position":f[0]+" "+f[1]});
+if(g===1){a.remove()}}}else{h=h<b.length-1?h+1:0}},c);
+if(d>0){var l=setTimeout(function(){clearInterval(k);
+a.css({"background-position":f[0]+" "+f[1]});
+if(g===1){a.remove()}},d)}}})
+</script>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-2890852-7']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script></body>
